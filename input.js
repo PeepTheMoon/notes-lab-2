@@ -19,13 +19,18 @@ const parse = (arr) => {
   };
 };
 
-// valid function evaluates and validates the input (returns true or false), and checks that there's data associated with the command (payload isn't empty)
+class Input {
+  constructor(arr) {
+    const { type, payload } = parse(arr);
+    this.type = type;
+    this.payload = payload;
+  }
 
-const valid = action => {
-  return action.type === 'add' && action.payload;
-};
+  // valid method evaluates and validates the input (returns true or false), and checks that there's data associated with the command (payload isn't empty)
 
-module.exports = { 
-  parse,
-  valid
-};
+  valid(action) {
+    return (action.type === 'add' && action.payload);
+  }
+}
+
+module.exports = { parse, Input };
