@@ -28,8 +28,8 @@ class Input {
 
   // valid method evaluates and validates the input (returns true or false), and checks that there's data associated with the command (payload isn't empty)
 
-  valid(action) {
-    return (action.type === 'add' && action.payload);
+  valid() {
+    return this.type === 'add' && this.payload;
   }
 }
 
