@@ -33,4 +33,4 @@ class Input {
   }
 }
 
-module.exports = { parse, Input };
+module.exports = Input;

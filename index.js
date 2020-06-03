@@ -1,9 +1,10 @@
-const { Input } = require('./Input');
-const { Note } = require('./Note');
+const Input = require('./Input');
+const Note = require('./Note');
 
 const input = new Input(process.argv);
+if(input.valid()) Note.execute(input);
+else console.log('invalid command');
 
-const note = new Note(input);
 
 //use parse to create an action from process.argv
 //use valid to check if it's a valid action
