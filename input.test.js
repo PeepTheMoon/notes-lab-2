@@ -1,4 +1,4 @@
-const { Input, parse, valid } = require('./Input');
+const Input = require('./Input');
 
 describe ('input functions', () => {
   it ('parses first 2 items in an array with minimist', () => {
