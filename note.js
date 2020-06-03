@@ -1,37 +1,71 @@
-class Note {
-  //constructs the shape of the note object
-  constructor(id, text) {
-    this.id = id;
-    this.text = text;
-  }
+const mongoose = require('mongoose');
 
-  // add method adds a note.  In the future it will add the note to the db
-  static add(actionObj) {
-    const note = {
-      id: Date.now(),
+// Creates a note schema (like a class)
+const noteSchema = new mongoose.Schema({
+  text: {
+    type: String,
+    required: true
+  }
+});
+
+noteSchema.statics.execute = function(actionObj) {
+  // creates and adds a note
+  if(actionObj.type === 'add') {
+    // const text = '';
+
+    return this.create({
       text: actionObj.payload
-    };
+    });
+    // console.log(`Note added: ${note.text}`);
 
-    console.log(`Note added: ${note.text}`);
+    // returns all of the user's notes
+  } else if(actionObj.type === 'list') {
+    return this.find();
 
-    return note;
+    //deletes a note
+  } else if(actionObj.type === 'delete') {
+    return this.findByIdAndDelete(actionObj.payload); 
+    // console.log(`Note deleted: ${note.text}`)
   }
+};
 
-  //execute method takes an actionObj and chooses what method to run
-  static execute(actionObj) {
-  //add error messages?
-    switch(actionObj.type) {
-      case 'add':
-        return this.add(actionObj);
+module.exports = mongoose.model('Note', noteSchema);
 
-      // Nothing is returned if no command given
-      default:
-        return;
-    }
-  }
-}
 
-module.exports = Note;
+// class Note {
+//   //constructs the shape of the note object
+//   constructor(id, text) {
+//     this.id = id;
+//     this.text = text;
+//   }
+
+//   // add method adds a note.  In the future it will add the note to the db
+//   static add(actionObj) {
+//     const note = {
+//       id: Date.now(),
+//       text: actionObj.payload
+//     };
+
+//     console.log(`Note added: ${note.text}`);
+
+//     return note;
+//   }
+
+//   //execute method takes an actionObj and chooses what method to run
+//   static execute(actionObj) {
+//   //add error messages?
+//     switch(actionObj.type) {
+//       case 'add':
+//         return this.add(actionObj);
+
+//       // Nothing is returned if no command given
+//       default:
+//         return;
+//     }
+//   }
+// }
+
+// module.exports = Note;
 
 
 

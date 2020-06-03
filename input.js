@@ -13,6 +13,10 @@ const parse = (arr) => {
   //return 'add'
   //}
 
+  if(type === 'list') {
+    payload: true;
+  }
+
   return {
     type,
     payload
@@ -29,7 +33,7 @@ class Input {
   // valid method evaluates and validates the input (returns true or false), and checks that there's data associated with the command (payload isn't empty)
 
   valid() {
-    return this.type === 'add' && this.payload;
+    return this.type === 'add' || 'list' && this.payload;
   }
 }
 
