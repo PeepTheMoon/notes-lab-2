@@ -1,17 +1,5 @@
 const Input = require('./Input');
-
-describe ('input functions', () => {
-  it ('parses first 2 items in an array with minimist', () => {
-    const arr = ['node', 'index.js', '--add', 'Note'];
-    const results = parse(arr);
-
-    expect(results).toEqual({
-      type: 'add',
-      payload: 'Note'
-    });
-  });
-});
-
+  
 describe('Input class', () => {
   let input;
   beforeEach(() => {
