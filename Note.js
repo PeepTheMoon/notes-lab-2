@@ -49,10 +49,7 @@ module.exports = mongoose.model('Note', noteSchema);
 
 //   // add method adds a note.  In the future it will add the note to the db
 //   static add(actionObj) {
-//     const note = {
-//       id: Date.now(),
-//       text: actionObj.payload
-//     };
+//     const note = new Note (Date.now(), actionObj.payload);
 
 //     console.log(`Note added: ${note.text}`);
 
