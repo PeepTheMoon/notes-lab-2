@@ -9,23 +9,31 @@ const noteSchema = new mongoose.Schema({
 });
 
 noteSchema.statics.execute = function(actionObj) {
+  console.log(actionObj);
   // creates and adds a note
   if(actionObj.type === 'add') {
     // const text = '';
 
     return this.create({
       text: actionObj.payload
-    });
-    // console.log(`Note added: ${note.text}`);
+    }, console.log(`Note added: ${actionObj.payload}`));
 
     // returns all of the user's notes
   } else if(actionObj.type === 'list') {
-    return this.find();
+    return this.find()
+      .lean()
+      .then(notes => {
+        console.log(notes);
+        return notes;
+      });
 
     //deletes a note
   } else if(actionObj.type === 'delete') {
-    return this.findByIdAndDelete(actionObj.payload); 
-    // console.log(`Note deleted: ${note.text}`)
+    return this.findByIdAndDelete(actionObj.payload)
+      .then(note => {
+        console.log(`Note deleted: ${note.text}`);
+        return note;
+      }); 
   }
 };
 

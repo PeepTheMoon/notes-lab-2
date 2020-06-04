@@ -44,7 +44,7 @@ describe('Note model', () => {
 
     return Note.execute({ type: 'list' })
       .then(notes => {
-        expect(notes.map(note => note.toJSON())).toEqual([{
+        expect(notes).toEqual([{
           _id: expect.anything(),
           text: expect.any(String),
           __v: 0
@@ -72,7 +72,6 @@ describe('Note model', () => {
       });
   });
 });
-
 
 
 

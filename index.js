@@ -1,8 +1,15 @@
 const Input = require('./Input');
 const Note = require('./Note');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/play', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const input = new Input(process.argv);
-if(input.valid()) Note.execute(input);
+if(input.valid()) Note.execute(input)
+  .then(() => mongoose.connection.close());
 else console.log('invalid command');
 
 
