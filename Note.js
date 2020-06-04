@@ -12,7 +12,6 @@ noteSchema.statics.execute = function(actionObj) {
   console.log(actionObj);
   // creates and adds a note
   if(actionObj.type === 'add') {
-    // const text = '';
 
     return this.create({
       text: actionObj.payload
